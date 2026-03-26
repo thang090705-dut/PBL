@@ -1,0 +1,6 @@
+============ DANH SÁCH VÉ ĐÃ ĐẶT ============
+Mã vé        : PFIEV01A
+Hành khách   : Nguyen Van A
+Số điện thoại: 0111111111
+Ghế          : 01A (Business Class)
+---------------------------------------------

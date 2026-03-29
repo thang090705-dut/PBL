@@ -1,6 +1,9 @@
 #include "SeatManager.hpp"
 #include <iostream>
 #include <cstring>
+#include <fstream>
+#include <string>
+#include "Path.hpp"
 
 using namespace std;
 
@@ -19,40 +22,29 @@ int SeatManager::getseatStatus(int index) const{ return seatStatus[index]; }
 
 void SeatManager::displaySeats() const{
     cout << endl << "Danh sách ghế ngồi của chuyến bay: " << endl;
-    cout << "Tổng số ghế ngồi: " << totalSeats << endl;
-    cout << endl << "========= SƠ ĐỒ GHẾ NGỒI =========" << endl;
-    cout << "Tổng số ghế: " << totalSeats << " (12 Business Class, 48 Economy Class)" << endl;
-    cout << "[XX] : Đã đặt    [Số] : Ghế trống" << endl;
-    cout << "----------------------------------" << endl;
-
-    if (totalSeats > 0) {
-        cout << "         [ BUSINESS CLASS ]" << endl;
+    
+    ifstream fin(PATH_SEAT_TEMPLATE);
+    if (!fin.is_open()) {
+        cout << "Lỗi: Không tìm thấy file mẫu sơ đồ ghế tại " << PATH_SEAT_TEMPLATE << endl;
+        return;
     }
-
+    
+    string templateContent((istreambuf_iterator<char>(fin)), istreambuf_iterator<char>());
+    fin.close();
+    
     for(int i = 0; i < totalSeats; i++){
-        if (i == 12 && totalSeats > 12) {
-            cout << endl << "         [ ECONOMY CLASS ]" << endl;
-        }
-
-        int row = (i / 6) + 1;
-        char col = 'A' + (i % 6);
-
         if (seatStatus[i] == 1) {
-            cout << "[ XX ]  ";
-        } else {
-            if (row < 10) cout << "[ 0" << row << col << " ]  ";
-            else cout << "[ " << row << col << " ]  ";
-        }
-
-        // Tạo lối đi sau cột C (vị trí thứ 3) và xuống dòng ở mỗi 6 ghế
-        if ((i + 1) % 6 == 0) {
-            cout << endl;
-        } else if ((i + 1) % 6 == 3) {
-            cout << "  ||    "; 
+            int row = (i / 6) + 1;
+            char col = 'A' + (i % 6);
+            string code = (row < 10 ? "0" : "") + to_string(row) + col;
+            
+            size_t pos = templateContent.find(code);
+            if (pos != string::npos) {
+                templateContent.replace(pos, 3, "XX "); // Ghi đè 3 ký tự (Ví dụ '01A' bằng 'XX ') để không phá layout
+            }
         }
     }
-    if (totalSeats % 6 != 0) cout << endl;
-    cout << "==================================" << endl;
+    cout << templateContent << endl;
 }
 int SeatManager::countEmptySeats(){
     int count_empty = 0;

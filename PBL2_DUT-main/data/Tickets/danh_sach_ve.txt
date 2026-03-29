@@ -1,6 +1,301 @@
 ============ DANH SÁCH VÉ ĐÃ ĐẶT ============
-Mã vé        : PFIEV01A
-Hành khách   : Nguyen Van A
-Số điện thoại: 0111111111
-Ghế          : 01A (Business Class)
+Mã vé        : VE01
+Hành khách   : Khach Hang 01
+Số điện thoại: 0901000001
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE02
+Hành khách   : Khach Hang 02
+Số điện thoại: 0901000002
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE03
+Hành khách   : Khach Hang 03
+Số điện thoại: 0901000003
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE04
+Hành khách   : Khach Hang 04
+Số điện thoại: 0901000004
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE05
+Hành khách   : Khach Hang 05
+Số điện thoại: 0901000005
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE06
+Hành khách   : Khach Hang 06
+Số điện thoại: 0901000006
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE07
+Hành khách   : Khach Hang 07
+Số điện thoại: 0901000007
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE08
+Hành khách   : Khach Hang 08
+Số điện thoại: 0901000008
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE09
+Hành khách   : Khach Hang 09
+Số điện thoại: 0901000009
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE10
+Hành khách   : Khach Hang 10
+Số điện thoại: 0901000010
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE11
+Hành khách   : Khach Hang 11
+Số điện thoại: 0901000011
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE12
+Hành khách   : Khach Hang 12
+Số điện thoại: 0901000012
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE13
+Hành khách   : Khach Hang 13
+Số điện thoại: 0901000013
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE14
+Hành khách   : Khach Hang 14
+Số điện thoại: 0901000014
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE15
+Hành khách   : Khach Hang 15
+Số điện thoại: 0901000015
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE16
+Hành khách   : Khach Hang 16
+Số điện thoại: 0901000016
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE17
+Hành khách   : Khach Hang 17
+Số điện thoại: 0901000017
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE18
+Hành khách   : Khach Hang 18
+Số điện thoại: 0901000018
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE19
+Hành khách   : Khach Hang 19
+Số điện thoại: 0901000019
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE20
+Hành khách   : Khach Hang 20
+Số điện thoại: 0901000020
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE21
+Hành khách   : Khach Hang 21
+Số điện thoại: 0901000021
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE22
+Hành khách   : Khach Hang 22
+Số điện thoại: 0901000022
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE23
+Hành khách   : Khach Hang 23
+Số điện thoại: 0901000023
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE24
+Hành khách   : Khach Hang 24
+Số điện thoại: 0901000024
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE25
+Hành khách   : Khach Hang 25
+Số điện thoại: 0901000025
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE26
+Hành khách   : Khach Hang 26
+Số điện thoại: 0901000026
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE27
+Hành khách   : Khach Hang 27
+Số điện thoại: 0901000027
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE28
+Hành khách   : Khach Hang 28
+Số điện thoại: 0901000028
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE29
+Hành khách   : Khach Hang 29
+Số điện thoại: 0901000029
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE30
+Hành khách   : Khach Hang 30
+Số điện thoại: 0901000030
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE31
+Hành khách   : Khach Hang 31
+Số điện thoại: 0901000031
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE32
+Hành khách   : Khach Hang 32
+Số điện thoại: 0901000032
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE33
+Hành khách   : Khach Hang 33
+Số điện thoại: 0901000033
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE34
+Hành khách   : Khach Hang 34
+Số điện thoại: 0901000034
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE35
+Hành khách   : Khach Hang 35
+Số điện thoại: 0901000035
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE36
+Hành khách   : Khach Hang 36
+Số điện thoại: 0901000036
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE37
+Hành khách   : Khach Hang 37
+Số điện thoại: 0901000037
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE38
+Hành khách   : Khach Hang 38
+Số điện thoại: 0901000038
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE39
+Hành khách   : Khach Hang 39
+Số điện thoại: 0901000039
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE40
+Hành khách   : Khach Hang 40
+Số điện thoại: 0901000040
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE41
+Hành khách   : Khach Hang 41
+Số điện thoại: 0901000041
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE42
+Hành khách   : Khach Hang 42
+Số điện thoại: 0901000042
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE43
+Hành khách   : Khach Hang 43
+Số điện thoại: 0901000043
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE44
+Hành khách   : Khach Hang 44
+Số điện thoại: 0901000044
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE45
+Hành khách   : Khach Hang 45
+Số điện thoại: 0901000045
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE46
+Hành khách   : Khach Hang 46
+Số điện thoại: 0901000046
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE47
+Hành khách   : Khach Hang 47
+Số điện thoại: 0901000047
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE48
+Hành khách   : Khach Hang 48
+Số điện thoại: 0901000048
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE49
+Hành khách   : Khach Hang 49
+Số điện thoại: 0901000049
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE50
+Hành khách   : Khach Hang 50
+Số điện thoại: 0901000050
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE51
+Hành khách   : Khach Hang 51
+Số điện thoại: 0901000051
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE52
+Hành khách   : Khach Hang 52
+Số điện thoại: 0901000052
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE53
+Hành khách   : Khach Hang 53
+Số điện thoại: 0901000053
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE54
+Hành khách   : Khach Hang 54
+Số điện thoại: 0901000054
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE55
+Hành khách   : Khach Hang 55
+Số điện thoại: 0901000055
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE56
+Hành khách   : Khach Hang 56
+Số điện thoại: 0901000056
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE57
+Hành khách   : Khach Hang 57
+Số điện thoại: 0901000057
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE58
+Hành khách   : Khach Hang 58
+Số điện thoại: 0901000058
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE59
+Hành khách   : Khach Hang 59
+Số điện thoại: 0901000059
+Ghế          : Chưa chọn
+---------------------------------------------
+Mã vé        : VE60
+Hành khách   : Khach Hang 60
+Số điện thoại: 0901000060
+Ghế          : Chưa chọn
 ---------------------------------------------

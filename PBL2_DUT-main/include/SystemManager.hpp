@@ -14,8 +14,6 @@ private:
     SeatManager seatManager;
     TicketManager ticketManager;
     FileManager fileManager;
-private:
-    void validateNameAndPhoneNumber(std::string& name, std::string& phone);
 public:
     void openFlight();
     void displaySeatMap();

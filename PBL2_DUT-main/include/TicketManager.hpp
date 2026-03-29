@@ -14,6 +14,9 @@ private:
 public:
     void reset();
     bool isTicketExist(const char* newTicketCode);
+    std::string getPassengerName(const char* code);
+    std::string getPassengerPhone(const char* code);
+    void updateTicketSeat(const char* code, int seat);
     void addTicket(const char *newTicketCode, int seat, const std::string& name = "", const std::string& phone = "");
     void exportTicket(const char* code, const std::string& name, const std::string& phone,
                       const std::string& fCode, const std::string& dep, const std::string& dest,

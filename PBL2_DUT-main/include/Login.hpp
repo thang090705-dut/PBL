@@ -16,5 +16,3 @@ public:
 };
 
 #endif
-
-// #viet ham hidden password

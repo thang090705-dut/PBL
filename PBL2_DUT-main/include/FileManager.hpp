@@ -6,11 +6,10 @@
 
 class FileManager {
 public:
+    bool loadTicketsData(const std::string& path, TicketManager &tm);
     bool loadSeatMap(const std::string& path, SeatManager &sm, TicketManager &tm);
     bool saveSeatMap(const std::string& path, const SeatManager &sm);
     void printFileContent(const std::string& path);    
 };
 
 #endif
-
-// file output : file khach hang (username), file ve, file cho ngoi

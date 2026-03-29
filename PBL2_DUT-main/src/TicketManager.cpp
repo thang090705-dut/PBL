@@ -12,6 +12,29 @@ bool TicketManager::isTicketExist(const char* newTicketCode){
     }
     return false;
 }
+
+std::string TicketManager::getPassengerName(const char* code) {
+    for(int i = 0; i < bookingCount; i++) {
+        if (strcmp(ticketCode[i], code) == 0) return passengerNames[i];
+    }
+    return "";
+}
+
+std::string TicketManager::getPassengerPhone(const char* code) {
+    for(int i = 0; i < bookingCount; i++) {
+        if (strcmp(ticketCode[i], code) == 0) return passengerPhones[i];
+    }
+    return "";
+}
+
+void TicketManager::updateTicketSeat(const char* code, int seat) {
+    for(int i = 0; i < bookingCount; i++) {
+        if (strcmp(ticketCode[i], code) == 0) {
+            seatAssigned[i] = seat;
+            return;
+        }
+    }
+}
 void TicketManager::addTicket(const char *newTicketCode, int seat, const std::string& name, const std::string& phone){
     strcpy(ticketCode[bookingCount], newTicketCode);
     seatAssigned[bookingCount] = seat;
@@ -24,23 +47,25 @@ void TicketManager::exportTicket(const char* code, const std::string& name, cons
                                  const std::string& fCode, const std::string& dep, const std::string& dest,
                                  const std::string& time, const std::string& seatStr, const std::string& seatClass) {
     std::string filename = std::string(PATH_TICKETS_TICKET) + code + ".txt" ;
-    cout << filename;
     std::ofstream out(filename);
     if (out.is_open()) {
-        out << "============ THÔNG TIN VÉ MÁY BAY ============" << "\n";
-        out << "Mã chuyến bay       : " << fCode << "\n";
-        out << "Nơi đi              : " << dep << "\n";
-        out << "Nơi đến             : " << dest << "\n";
-        out << "Ngày/Giờ khởi hành  : " << time << "\n";
-        out << "----------------------------------------------" << "\n";
-        out << "Mã vé               : " << code << "\n";
-        out << "Hành khách          : " << name << "\n";
-        out << "Số điện thoại       : " << phone << "\n";
-        out << "Mã ghế ngồi         : " << seatStr << "\n";
-        out << "Hạng ghế            : " << seatClass << "\n";
-        out << "==============================================" << "\n";
+        std::string ticketContent = 
+            "============ THÔNG TIN VÉ MÁY BAY ============\n"
+            "Mã chuyến bay       : " + fCode + "\n"
+            "Nơi đi              : " + dep + "\n"
+            "Nơi đến             : " + dest + "\n"
+            "Ngày/Giờ khởi hành  : " + time + "\n"
+            "----------------------------------------------\n"
+            "Mã vé               : " + std::string(code) + "\n"
+            "Hành khách          : " + name + "\n"
+            "Số điện thoại       : " + phone + "\n"
+            "Mã ghế ngồi         : " + seatStr + "\n"
+            "Hạng ghế            : " + seatClass + "\n"
+            "==============================================\n";
+        
+        out << ticketContent;
         out.close();
-        std::cout << endl << "--- Đã xuất file vé ---  \n";
+        std::cout << "--- Đã xuất file vé: " << filename << " ---" << std::endl;
     }
     else {
         std::cout << "Lỗi: Không thể lưu vé! \n";
@@ -54,13 +79,17 @@ void TicketManager::printTicketInfo(const char* searchCode) {
             std::cout << "Mã vé: " << ticketCode[i] << std::endl;
             std::cout << "Hành khách: " << passengerNames[i] << std::endl;
             std::cout << "Số điện thoại: " << passengerPhones[i] << std::endl;
-            int row = (seatAssigned[i] - 1) / 6 + 1;
-            char col = 'A' + ((seatAssigned[i] - 1) % 6);
-            std::string seatClass = (seatAssigned[i] <= 12) ? "Business Class" : "Economy Class";
-            std::cout << "Mã ghế: ";
-            if (row < 10) std::cout << "0" << row << col;
-            else std::cout << row << col;
-            std::cout << " (" << seatClass << ")" << std::endl;
+            if (seatAssigned[i] > 0) {
+                int row = (seatAssigned[i] - 1) / 6 + 1;
+                char col = 'A' + ((seatAssigned[i] - 1) % 6);
+                std::string seatClass = (seatAssigned[i] <= 12) ? "Business Class" : "Economy Class";
+                std::cout << "Mã ghế: ";
+                if (row < 10) std::cout << "0" << row << col;
+                else std::cout << row << col;
+                std::cout << " (" << seatClass << ")" << std::endl;
+            } else {
+                std::cout << "Mã ghế: Chưa chọn" << std::endl;
+            }
             return;
         }
     }
@@ -68,27 +97,31 @@ void TicketManager::printTicketInfo(const char* searchCode) {
 }
 
 void TicketManager::exportAllTickets(const std::string& filename) {
-    std::ofstream out(PATH_TICKETS);
+    std::ofstream out(filename);
     if (!out.is_open()) {
-        std::cout << "Lỗi: Không thể mở file " << "danh_sach_ve.txt" << " để ghi!" << std::endl;
+        std::cout << "Lỗi: Không thể mở file " << filename << " để ghi!" << std::endl;
         return;
     }
     if (bookingCount == 0) {
         out << "Chưa có vé nào được đặt trong hệ thống.\n";
         std::cout << "Chưa có vé nào được đặt." << std::endl;
     } else {
-        cout << "bookingCount: " << bookingCount << endl;
-        out << "============ DANH SÁCH VÉ ĐÃ ĐẶT ============\n";
+        out << "============ DANH SÁCH VÉ ĐÃ CHỌN CHỖ ============\n";
+        int count = 0;
         for (int i = 0; i < bookingCount; i++) {
-            out << "Mã vé        : " << ticketCode[i] << "\n";
-            out << "Hành khách   : " << (passengerNames[i].empty() ? "N/A (Khách từ phiên làm việc trước)" : passengerNames[i]) << "\n";
-            out << "Số điện thoại: " << (passengerPhones[i].empty() ? "N/A" : passengerPhones[i]) << "\n";
-            int row = (seatAssigned[i] - 1) / 6 + 1;
-            char col = 'A' + ((seatAssigned[i] - 1) % 6);
-            std::string seatClass = (seatAssigned[i] <= 12) ? "Business Class" : "Economy Class";
-            out << "Ghế          : " << (row < 10 ? "0" : "") << row << col << " (" << seatClass << ")\n";
-            out << "---------------------------------------------\n";
+            if (seatAssigned[i] > 0) {
+                out << "Mã vé        : " << ticketCode[i] << "\n";
+                out << "Hành khách   : " << (passengerNames[i].empty() ? "N/A (Khách từ phiên làm việc trước)" : passengerNames[i]) << "\n";
+                out << "Số điện thoại: " << (passengerPhones[i].empty() ? "N/A" : passengerPhones[i]) << "\n";
+                int row = (seatAssigned[i] - 1) / 6 + 1;
+                char col = 'A' + ((seatAssigned[i] - 1) % 6);
+                std::string seatClass = (seatAssigned[i] <= 12) ? "Business Class" : "Economy Class";
+                out << "Ghế          : " << (row < 10 ? "0" : "") << row << col << " (" << seatClass << ")\n";
+                out << "---------------------------------------------\n";
+                count++;
+            }
         }
+        if (count == 0) out << "Chưa có hành khách nào chọn chỗ.\n";
         std::cout << "--- Đã xuất danh sách vé ra file --- ";
     }
     out.close();
@@ -116,12 +149,6 @@ bool TicketManager::removeTicket(const char* code) {
     std::string filename = PATH_TICKETS_TICKET + std::string(code) + ".txt";
     std::remove(filename.c_str());
 
-    for(int i = index; i < bookingCount - 1; i++) {
-        strcpy(ticketCode[i], ticketCode[i+1]);
-        seatAssigned[i] = seatAssigned[i+1];
-        passengerNames[i] = passengerNames[i+1];
-        passengerPhones[i] = passengerPhones[i+1];
-    }
-    bookingCount--;
+    seatAssigned[index] = -1; // Chỉ hủy ghế ngồi, giữ lại thông tin vé
     return true;
 }

@@ -4,10 +4,51 @@
 #include "Path.hpp"
 using namespace std;
 
-bool FileManager::loadSeatMap(const std::string& path, SeatManager &sm, TicketManager &tm){
-    ifstream fin(PATH_SEATS);
+bool FileManager::loadTicketsData(const std::string& path, TicketManager &tm) {
+    ifstream fin(path);
     if (!fin.is_open()) return false;
-    tm.reset();
+    
+    string line;
+    string currentCode, currentName, currentPhone;
+    
+    while (getline(fin, line)) {
+        if (line.find("Mã vé") != string::npos) {
+            size_t pos = line.find(":");
+            if (pos != string::npos) {
+                currentCode = line.substr(pos + 1);
+                currentCode.erase(0, currentCode.find_first_not_of(" \t"));
+                currentCode.erase(currentCode.find_last_not_of(" \n\r\t") + 1);
+            }
+        } else if (line.find("Hành khách") != string::npos) {
+            size_t pos = line.find(":");
+            if (pos != string::npos) {
+                currentName = line.substr(pos + 1);
+                currentName.erase(0, currentName.find_first_not_of(" \t"));
+                currentName.erase(currentName.find_last_not_of(" \n\r\t") + 1);
+            }
+        } else if (line.find("Số điện thoại") != string::npos) {
+            size_t pos = line.find(":");
+            if (pos != string::npos) {
+                currentPhone = line.substr(pos + 1);
+                currentPhone.erase(0, currentPhone.find_first_not_of(" \t"));
+                currentPhone.erase(currentPhone.find_last_not_of(" \n\r\t") + 1);
+            }
+        } else if (line.find("Ghế") != string::npos) {
+            if (!currentCode.empty()) {
+                if (!tm.isTicketExist(currentCode.c_str())) {
+                    tm.addTicket(currentCode.c_str(), -1, currentName, currentPhone);
+                }
+                currentCode = ""; currentName = ""; currentPhone = "";
+            }
+        }
+    }
+    fin.close();
+    return true;
+}
+
+bool FileManager::loadSeatMap(const std::string& path, SeatManager &sm, TicketManager &tm){
+    ifstream fin(path);
+    if (!fin.is_open()) return false;
     int total;
     fin >> total;
     sm.settotalSeats(total);
@@ -19,7 +60,11 @@ bool FileManager::loadSeatMap(const std::string& path, SeatManager &sm, TicketMa
             char code[10];
             fin >> code;
             sm.setSeatCode(i, code);
-            tm.addTicket(code, no);
+            if (tm.isTicketExist(code)) {
+                tm.updateTicketSeat(code, no);
+            } else {
+                tm.addTicket(code, no);
+            }
         }
         sm.setSeats(i, no, status);
     }
@@ -27,7 +72,7 @@ bool FileManager::loadSeatMap(const std::string& path, SeatManager &sm, TicketMa
     return true;
 }
 bool FileManager::saveSeatMap(const std::string& path, const SeatManager &sm){
-    ofstream fout(PATH_SEATS);
+    ofstream fout(path);
     if(!fout.is_open()) return false;
     int total = sm.gettotalSeats();
     fout << total << endl;
@@ -42,7 +87,7 @@ bool FileManager::saveSeatMap(const std::string& path, const SeatManager &sm){
     return true;
 }
 void FileManager::printFileContent(const std::string& path){
-    ifstream fin(PATH_SEATS);
+    ifstream fin(path);
     if (!fin.is_open()) return;
     cout << endl << "--- Nội dung file ---" << endl;
     char ch;

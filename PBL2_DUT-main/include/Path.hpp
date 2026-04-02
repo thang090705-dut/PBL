@@ -1,9 +1,15 @@
-#include <string>
-using namespace std;
+#ifndef PATH_HPP
+#define PATH_HPP
 
-const string PATH_SEATS = "./data/Seats_status.txt";
-const string PATH_USERS = "./data/Users.txt";
-const string PATH_TICKETS = "./data/Tickets/danh_sach_ve.txt";
-const string PATH_TICKETS_TICKET = "./data/Tickets/Ticket_";
-const string PATH_SEAT_TEMPLATE = "./data/Seats_map.txt";
-const string PATH_EXPORTED_TICKETS = "./data/Tickets/danh_sach_ve_da_chon.txt";
+#include <string>
+
+// --- Dữ liệu đầu vào (Input Data) ---
+const std::string PATH_SEATS = "data/seats.txt";
+const std::string PATH_USERS = "data/users.txt";
+const std::string PATH_TICKETS = "data/tickets_list.txt";
+const std::string PATH_SEAT_TEMPLATE = "data/seat_template.txt";
+
+// --- Dữ liệu đầu ra (Output Data) ---
+const std::string PATH_EXPORTED_TICKETS = "export/booked_tickets.txt";
+const std::string PATH_TICKETS_TICKET = "export/tickets/";
+#endif // PATH_HPP

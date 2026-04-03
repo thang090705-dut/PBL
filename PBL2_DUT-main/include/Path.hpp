@@ -12,4 +12,4 @@ const std::string PATH_SEAT_TEMPLATE = "data/seat_template.txt";
 // --- Dữ liệu đầu ra (Output Data) ---
 const std::string PATH_EXPORTED_TICKETS = "export/booked_tickets.txt";
 const std::string PATH_TICKETS_TICKET = "export/tickets/";
-#endif // PATH_HPP
+#endif

@@ -21,11 +21,9 @@ int SeatManager::getseatNo(int index) const{ return seatNo[index]; }
 int SeatManager::getseatStatus(int index) const{ return seatStatus[index]; }
 
 void SeatManager::displaySeats() const{
-    cout << endl << "Danh sách ghế ngồi của chuyến bay: " << endl;
-    
     ifstream fin(PATH_SEAT_TEMPLATE);
     if (!fin.is_open()) {
-        cout << "Lỗi: Không tìm thấy file mẫu sơ đồ ghế tại " << PATH_SEAT_TEMPLATE << endl;
+        cout << "          Lỗi: Không tìm thấy file mẫu sơ đồ ghế tại " << PATH_SEAT_TEMPLATE << endl;
         return;
     }
     
@@ -40,11 +38,24 @@ void SeatManager::displaySeats() const{
             
             size_t pos = templateContent.find(code);
             if (pos != string::npos) {
-                templateContent.replace(pos, 3, "XX "); // Ghi đè 3 ký tự (Ví dụ '01A' bằng 'XX ') để không phá layout
+                templateContent.replace(pos, 3, "XX ");
             }
         }
     }
-    cout << templateContent << endl;
+
+    cout << "\n          --- SƠ ĐỒ GHẾ CHUYẾN BAY ---\n\n";
+    
+    size_t pos_nl = 0;
+    string indent = "          ";
+    string indentedTemplate = indent + templateContent;
+    while ((pos_nl = indentedTemplate.find('\n', pos_nl)) != string::npos) {
+        if (pos_nl + 1 < indentedTemplate.length()) {
+            indentedTemplate.insert(pos_nl + 1, indent);
+        }
+        pos_nl += indent.length() + 1;
+    }
+    
+    cout << indentedTemplate << "\n\n";
 }
 int SeatManager::countEmptySeats(){
     int count_empty = 0;

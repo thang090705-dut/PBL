@@ -19,12 +19,9 @@ void SystemManager::openFlight(){
     }
 }
 void SystemManager::displaySeatMap(){
-    flight.displayFlightInfo();
-    cout << "------------------" <<endl;
+    cout << "          THÔNG TIN CHUYẾN BAY: " << flight.getFlightCode() << " | " << flight.getDeparture() << " -> " << flight.getDestination() << " | " << flight.getFlightTime() << "\n";
     seatManager.displaySeats();
-    cout << "------------------" <<endl;
-    cout << "Tổng số ghế còn trống: " << seatManager.countEmptySeats() << endl;
-    cout << "------------------" << endl;
+    cout << "          => Tổng số ghế còn trống: " << seatManager.countEmptySeats() << endl;
 }
 
 void SystemManager::bookingProcess() {
@@ -32,30 +29,30 @@ void SystemManager::bookingProcess() {
         int count_empty = seatManager.countEmptySeats();
         
         if (count_empty <= 0) {
-            cout << "CHUYẾN BAY ĐÃ HẾT GHẾ TRỐNG!" << endl;
+            cout << "          [!] CHUYẾN BAY ĐÃ HẾT GHẾ TRỐNG!" << endl;
             return;
         }
 
         string code;
-        cout << "\nNhập mã vé của bạn (hoặc nhập 'Q' để thoát ra menu): ";
+        cout << "          Nhập mã vé của bạn (hoặc nhập 'Q' để thoát ra menu): ";
         cin >> code;
 
         if (code == "Q" || code == "q") {
-            cout << "Đã thoát quá trình đặt chỗ." << endl;
+            cout << "          Đã thoát quá trình đặt chỗ." << endl;
             return;
         }
 
         if (!ticketManager.isTicketExist(code.c_str())) {
-            cout << "=> Lỗi: Mã vé không tồn tại trong hệ thống!" << endl;
+            cout << "          [!] Lỗi: Mã vé không tồn tại trong hệ thống!" << endl;
             continue;
         }
 
-        cout << "Thông tin hành khách: " << ticketManager.getPassengerName(code.c_str()) 
-             << " | SĐT: " << ticketManager.getPassengerPhone(code.c_str()) << endl;
+        cout << "          [*] Hành khách: " << ticketManager.getPassengerName(code.c_str()) 
+             << " | SĐT: " << ticketManager.getPassengerPhone(code.c_str()) << "\n\n";
 
         int currentSeat = ticketManager.getSeatByTicketCode(code.c_str());
         if (currentSeat > 0 && currentSeat <= 60) {
-            cout << "=> Lỗi: Vé này đã được chọn chỗ (Ghế số " << currentSeat << ")!" << endl;
+            cout << "          [!] Lỗi: Vé này đã được chọn chỗ (Ghế số " << currentSeat << ")!" << endl;
             continue;
         }
 
@@ -65,11 +62,11 @@ void SystemManager::bookingProcess() {
             string seatInput;
             int seatNum = -1;
             
-            cout << "\nNhập mã ghế muốn chọn (VD: 01A, 12F...) hoặc nhập 'Q' để chọn vé khác: ";
+            cout << "\n          Nhập mã ghế muốn chọn (VD: 01A) hoặc nhập 'Q' để đổi vé: ";
             cin >> seatInput;
 
             if (seatInput == "Q" || seatInput == "q") {
-                cout << "Đã hủy thao tác chọn ghế." << endl;
+                cout << "          Đã hủy thao tác chọn ghế." << endl;
                 break;
             }
 
@@ -95,30 +92,32 @@ void SystemManager::bookingProcess() {
                 string phone = ticketManager.getPassengerPhone(code.c_str());
                 string seatClass = (seatNum <= 12) ? "Business Class" : "Economy Class";
                 
-                cout << "\n============ THÔNG TIN VÉ MÁY BAY ============\n";
-                cout << "Mã chuyến bay       : " << flight.getFlightCode() << "\n";
-                cout << "Nơi đi              : " << flight.getDeparture() << "\n";
-                cout << "Nơi đến             : " << flight.getDestination() << "\n";
-                cout << "Ngày/Giờ khởi hành  : " << flight.getFlightTime() << "\n";
-                cout << "----------------------------------------------\n";
-                cout << "Mã vé               : " << code << "\n";
-                cout << "Hành khách          : " << name << "\n";
-                cout << "Số điện thoại       : " << phone << "\n";
-                cout << "Mã ghế ngồi         : " << seatInput << "\n";
-                cout << "Hạng ghế            : " << seatClass << "\n";
-                cout << "==============================================\n";
+                cout << "\n          ╔════════════════════════════════════════════════════════════╗\n";
+                cout << "          ║                   THÔNG TIN VÉ MÁY BAY                     ║\n";
+                cout << "          ╠════════════════════════════════════════════════════════════╣\n";
+                cout << "            Mã chuyến bay       : " << flight.getFlightCode() << "\n";
+                cout << "            Nơi đi              : " << flight.getDeparture() << "\n";
+                cout << "            Nơi đến             : " << flight.getDestination() << "\n";
+                cout << "            Ngày/Giờ khởi hành  : " << flight.getFlightTime() << "\n";
+                cout << "          ╠════════════════════════════════════════════════════════════╣\n";
+                cout << "            Mã vé               : " << code << "\n";
+                cout << "            Hành khách          : " << name << "\n";
+                cout << "            Số điện thoại       : " << phone << "\n";
+                cout << "            Mã ghế ngồi         : " << seatInput << "\n";
+                cout << "            Hạng ghế            : " << seatClass << "\n";
+                cout << "          ╚════════════════════════════════════════════════════════════╝\n";
                 
-                cout << "=> Chọn chỗ thành công! Ghế: " << seatInput << " | Mã vé: " << code << endl;
+                cout << "          [+] Chọn chỗ thành công! Ghế: " << seatInput << " | Mã vé: " << code << endl;
                 
                 char confirm;
-                cout << "Bạn có muốn in vé (xuất file .txt) không? (Y/N): ";
+                cout << "          Bạn có muốn in vé (xuất file .txt) không? (Y/N): ";
                 cin >> confirm;
                 if (toupper(confirm) == 'Y') {
                     ticketManager.exportTicket(code.c_str(), name, phone, flight.getFlightCode(), flight.getDeparture(), flight.getDestination(), flight.getFlightTime(), seatInput, seatClass);
                 }
                 break;
             } else {
-                cout << "=> Lỗi: Mã ghế '" << seatInput << "' không hợp lệ hoặc đã có người đặt. Vui lòng chọn lại!" << endl;
+                cout << "          [!] Lỗi: Mã ghế '" << seatInput << "' không hợp lệ hoặc đã có người đặt!" << endl;
             }
         }
     }
@@ -153,24 +152,40 @@ void SystemManager::exportBookedTickets(){
 
 void SystemManager::cancelTicketProcess() {
     char input;
-    cout << "Hủy toàn bộ vé (Nhấn X)" << endl << "Hủy 1 vé (Nhấn bất kỳ)" << endl;
+    cout << "          Hủy toàn bộ vé (Nhấn X) | Hủy 1 vé (Nhấn Y) | Quay lại menu (Nhấn Q): ";
     cin >> input;
-    if (input == 'X') {
+    input = toupper(input);
+    
+    if (input == 'Q') {
+        cout << "          Đã hủy thao tác, quay lại menu chính." << endl;
+        return;
+    } else if (input == 'X') {
         cancelAllTickets();
         return;
-    }
-    string code;
-    cout << "Nhập mã vé cần hủy: ";
-    cin >> code;
+    } else if (input == 'Y') {
+        string code;
+        cout << "          Nhập mã vé cần hủy: ";
+        cin >> code;
 
-    int seatNum = ticketManager.getSeatByTicketCode(code.c_str());
-    if (seatNum != -1) {
-        ticketManager.removeTicket(code.c_str());
-        seatManager.unassignSeat(seatNum);
-        fileManager.saveSeatMap(PATH_SEATS, seatManager);
-        cout << "Đã hủy vé " << code << endl;
+        int seatNum = ticketManager.getSeatByTicketCode(code.c_str());
+        if (seatNum != -1) {
+            char confirm;
+            cout << "          Bạn có chắc chắn muốn hủy vé " << code << " không? (Y/N): ";
+            cin >> confirm;
+            
+            if (toupper(confirm) == 'Y') {
+                ticketManager.removeTicket(code.c_str());
+                seatManager.unassignSeat(seatNum);
+                fileManager.saveSeatMap(PATH_SEATS, seatManager);
+                cout << "          [+] Đã hủy vé " << code << endl;
+            } else {
+                cout << "          Đã hủy thao tác xóa vé." << endl;
+            }
+        } else {
+            cout << "          [!] Không tìm thấy mã vé: " << code << " trong hệ thống!" << endl;
+        }
     } else {
-        cout << "Không tìm thấy mã vé: " << code << " trong hệ thống!" << endl;
+        cout << "          [!] Lựa chọn không hợp lệ!" << endl;
     }
 }
 

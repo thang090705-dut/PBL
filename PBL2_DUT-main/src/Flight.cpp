@@ -11,11 +11,6 @@ void Flight::inputFlight(){
     FlightCode = "PFIEV";
     Departure = "Da Nang";
     Destination = "Ho Chi Minh City";
-    // time_t now = time(nullptr);
-    // struct tm timeInfo = *localtime(&now);
-    // ostringstream oss;
-    // oss << put_time(&timeInfo, "%H:%M %d/%m/%Y");
-    // FlightTime = oss.str();
     FlightTime = "19:00 09/07/2025";
 }
 void Flight::displayFlightInfo() const{

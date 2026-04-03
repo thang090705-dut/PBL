@@ -7,9 +7,10 @@ using namespace std;
 
 
 void Login::input() {
-    cout << "Tên đăng nhập: " << endl;
+    cout << "\n\n          --- HỆ THỐNG ĐĂNG NHẬP ---\n\n";
+    cout << "          Tên đăng nhập: ";
     getline(cin, Username);
-    cout << "Mật khẩu: ";
+    cout << "          Mật khẩu     : ";
     Password = "";
     char ch;
     
@@ -28,7 +29,7 @@ void Login::input() {
             cout << '*'; 
         }
     }
-    cout << endl;
+    cout << "\n";
 }
 string Login::getUsername() const{ return Username; }
 string Login::getPassword() const{ return Password; }
@@ -55,13 +56,13 @@ bool Login::performLogin() {
     while (!check()) {
         ++i;
         if (i == 3) {
-            cout << "Khóa đăng nhập" << endl;
+            cout << "\n          [!] Khóa đăng nhập. Bạn đã nhập sai quá 3 lần!\n";
             return false;
         }
-        cout << "Đăng nhập thất bại! Vui lòng nhập lại" << endl;
-        cout << "Còn " << 3 - i << " lần đăng nhập" << endl;
+        cout << "\n          [!] Đăng nhập thất bại! Vui lòng nhập lại\n";
+        cout << "          [*] Bạn còn " << 3 - i << " lần thử.\n";
         input();
     }
-    cout << "Đăng nhập thành công" << endl;
+    cout << "\n          [+] Đăng nhập thành công!\n";
     return true;
 }

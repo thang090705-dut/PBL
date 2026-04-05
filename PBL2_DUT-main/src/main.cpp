@@ -5,6 +5,8 @@
 #include <limits>
 #include <ctime>
 #include <cstdlib>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
@@ -18,10 +20,18 @@ int main() {
         return 0;
     }
 
+    cout << "          Đang vào hệ thống...";
+    this_thread::sleep_for(chrono::seconds(2));
+    #ifdef _WIN32
+    system("cls");
+    #else
+    system("clear");
+    #endif
+
     string cmd;
     SystemManager sys;
 
-    cout << "\n          --- KHỞI TẠO HỆ THỐNG ---" << endl;
+    cout << "\n                             --- KHỞI TẠO HỆ THỐNG ---" << endl;
     sys.openFlight();
 
     int choice;
@@ -44,6 +54,11 @@ int main() {
         }
 
         cout << "\n";
+        #ifdef _WIN32
+        system("cls");
+        #else
+        system("clear");
+        #endif
         switch (choice) {
             case 1: sys.bookingProcess(); break;
             case 2: sys.displaySeatMap(); break;

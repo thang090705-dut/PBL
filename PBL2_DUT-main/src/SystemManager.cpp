@@ -12,7 +12,7 @@ void SystemManager::openFlight(){
     flight.inputFlight();
     ticketManager.reset();
     if (!fileManager.loadTicketsData(PATH_TICKETS, ticketManager)) {
-        cout << "=> Không thể tải danh sách 60 vé từ file danh_sach_ve.txt!" << endl;
+        cout << "=> Không thể tải danh sách 60 vé!" << endl;
     }
     if (!fileManager.loadSeatMap(PATH_SEATS, seatManager, ticketManager)) {
         cout << "Khong the tai du lieu ghe tu file!" << endl;

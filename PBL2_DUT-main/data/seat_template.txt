@@ -1,12 +1,12 @@
-========= SƠ ĐỒ GHẾ NGỒI =========
-Tổng số ghế: 60 (12 Business Class, 48 Economy Class)
-[XX] : Đã đặt    [Số] : Ghế trống
+====================== SƠ ĐỒ GHẾ NGỒI ======================
+    Tổng số ghế: 60 (12 Business Class, 48 Economy Class)
+    [XX] : Đã đặt                       [Số] : Ghế trống
 ------------------------------------------------------------
-         [ BUSINESS CLASS ]
+                    [ BUSINESS CLASS ]
 [ 01A ]  [ 01B ]  [ 01C ]    ||    [ 01D ]  [ 01E ]  [ 01F ]  
 [ 02A ]  [ 02B ]  [ 02C ]    ||    [ 02D ]  [ 02E ]  [ 02F ]  
 
-         [ ECONOMY CLASS ]
+                    [ ECONOMY CLASS ]
 [ 03A ]  [ 03B ]  [ 03C ]    ||    [ 03D ]  [ 03E ]  [ 03F ]  
 [ 04A ]  [ 04B ]  [ 04C ]    ||    [ 04D ]  [ 04E ]  [ 04F ]  
 [ 05A ]  [ 05B ]  [ 05C ]    ||    [ 05D ]  [ 05E ]  [ 05F ]  

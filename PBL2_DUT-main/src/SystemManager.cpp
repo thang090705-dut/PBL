@@ -1,11 +1,14 @@
 #include "SystemManager.hpp"
+#include "Path.hpp"
+#include "SeatManager.hpp"
+#include "ErrorHandler.hpp"
 #include <iostream>
 #include <limits>
 #include <string>
 #include <cctype>
 #include <cstring>
-#include "Path.hpp"
-#include "SeatManager.hpp"
+#include <stdexcept>
+
 using namespace std;
 
 void SystemManager::openFlight(){
@@ -36,6 +39,7 @@ void SystemManager::bookingProcess() {
         string code;
         cout << "          Nhập mã vé của bạn (hoặc nhập 'Q' để thoát ra menu): ";
         cin >> code;
+        ErrorHandler::clearInputBuffer();
 
         if (code == "Q" || code == "q") {
             cout << "          Đã thoát quá trình đặt chỗ." << endl;
@@ -47,7 +51,7 @@ void SystemManager::bookingProcess() {
             continue;
         }
 
-        cout << "          [*] Hành khách: " << ticketManager.getPassengerName(code.c_str()) 
+        cout << "\n          [*] Hành khách: " << ticketManager.getPassengerName(code.c_str()) 
              << " | SĐT: " << ticketManager.getPassengerPhone(code.c_str()) << "\n\n";
 
         int currentSeat = ticketManager.getSeatByTicketCode(code.c_str());
@@ -64,6 +68,7 @@ void SystemManager::bookingProcess() {
             
             cout << "\n          Nhập mã ghế muốn chọn (VD: 01A) hoặc nhập 'Q' để đổi vé: ";
             cin >> seatInput;
+            ErrorHandler::clearInputBuffer();
 
             if (seatInput == "Q" || seatInput == "q") {
                 cout << "          Đã hủy thao tác chọn ghế." << endl;
@@ -76,6 +81,10 @@ void SystemManager::bookingProcess() {
                     try {
                         int row = stoi(seatInput.substr(0, seatInput.length() - 1));
                         seatNum = (row - 1) * 6 + (colChar - 'A') + 1;
+                    } catch (const std::invalid_argument&) {
+                        seatNum = -1;
+                    } catch (const std::out_of_range&) {
+                        seatNum = -1;
                     } catch (...) {
                         seatNum = -1;
                     }
@@ -112,6 +121,7 @@ void SystemManager::bookingProcess() {
                 char confirm;
                 cout << "          Bạn có muốn in vé (xuất file .txt) không? (Y/N): ";
                 cin >> confirm;
+                ErrorHandler::clearInputBuffer();
                 if (toupper(confirm) == 'Y') {
                     ticketManager.exportTicket(code.c_str(), name, phone, flight.getFlightCode(), flight.getDeparture(), flight.getDestination(), flight.getFlightTime(), seatInput, seatClass);
                 }
@@ -127,6 +137,7 @@ void SystemManager::checkTicket(){
     string code;
     cout << "Nhập mã vé cần kiểm tra: ";
     cin >> code;
+    ErrorHandler::clearInputBuffer();
 
     if (!ticketManager.isTicketExist(code.c_str())) {
         cout << "=> Lỗi: Mã vé không tồn tại trong hệ thống!" << endl;
@@ -154,6 +165,7 @@ void SystemManager::cancelTicketProcess() {
     char input;
     cout << "          Hủy toàn bộ vé (Nhấn X) | Hủy 1 vé (Nhấn Y) | Quay lại menu (Nhấn Q): ";
     cin >> input;
+    ErrorHandler::clearInputBuffer();
     input = toupper(input);
     
     if (input == 'Q') {
@@ -166,12 +178,14 @@ void SystemManager::cancelTicketProcess() {
         string code;
         cout << "          Nhập mã vé cần hủy: ";
         cin >> code;
+        ErrorHandler::clearInputBuffer();
 
         int seatNum = ticketManager.getSeatByTicketCode(code.c_str());
         if (seatNum != -1) {
             char confirm;
             cout << "          Bạn có chắc chắn muốn hủy vé " << code << " không? (Y/N): ";
             cin >> confirm;
+            ErrorHandler::clearInputBuffer();
             
             if (toupper(confirm) == 'Y') {
                 ticketManager.removeTicket(code.c_str());
@@ -204,6 +218,7 @@ void SystemManager::cancelAllTickets() {
     cout << "CẢNH BÁO: Bạn đang chuẩn bị hủy TOÀN BỘ " << count << " vé trên chuyến bay." << endl;
     cout << "Bạn có chắc chắn muốn tiếp tục không? (Y/N): ";
     cin >> confirm;
+    ErrorHandler::clearInputBuffer();
     
     if (toupper(confirm) != 'Y') {
         cout << "=> Đã hủy thao tác xóa toàn bộ vé." << endl;

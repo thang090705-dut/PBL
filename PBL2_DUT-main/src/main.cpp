@@ -7,6 +7,8 @@
 #include <cstdlib>
 #include <thread>
 #include <chrono>
+#include <exception>
+#include "ErrorHandler.hpp"
 
 using namespace std;
 
@@ -48,10 +50,9 @@ int main() {
         cout << "          ╚════════════════════════════════════════════════════════════╝\n";
         cout << "          Lựa chọn của bạn: ";
         if (!(cin >> choice)) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             choice = -1;
         }
+        ErrorHandler::clearInputBuffer();
 
         cout << "\n";
         #ifdef _WIN32
@@ -59,16 +60,22 @@ int main() {
         #else
         system("clear");
         #endif
-        switch (choice) {
-            case 1: sys.bookingProcess(); break;
-            case 2: sys.displaySeatMap(); break;
-            case 3: sys.exportBookedTickets(); break;
-            case 4: sys.cancelTicketProcess(); break;
-            case 5: 
-                sys.closeFlight(); 
-                cout << "          Thoát chương trình. Tạm biệt!\n"; 
-                break;
-            default: cout << "          Lựa chọn không hợp lệ. Vui lòng thử lại!\n"; break;
+        try {
+            switch (choice) {
+                case 1: sys.bookingProcess(); break;
+                case 2: sys.displaySeatMap(); break;
+                case 3: sys.exportBookedTickets(); break;
+                case 4: sys.cancelTicketProcess(); break;
+                case 5: 
+                    sys.closeFlight(); 
+                    cout << "          Thoát chương trình. Tạm biệt!\n"; 
+                    break;
+                default: cout << "          Lựa chọn không hợp lệ. Vui lòng thử lại!\n"; break;
+            }
+        } catch (const std::exception& e) {
+            ErrorHandler::printError("Đã xảy ra lỗi hệ thống: " + string(e.what()));
+        } catch (...) {
+            ErrorHandler::printError("Đã xảy ra lỗi không xác định!");
         }
     } while (choice != 5);
 

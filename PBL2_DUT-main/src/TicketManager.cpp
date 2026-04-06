@@ -149,6 +149,6 @@ bool TicketManager::removeTicket(const char* code) {
     std::string filename = PATH_TICKETS_TICKET + std::string(code) + ".txt";
     std::remove(filename.c_str());
 
-    seatAssigned[index] = -1; // Chỉ hủy ghế ngồi, giữ lại thông tin vé
+    seatAssigned[index] = -1;
     return true;
 }

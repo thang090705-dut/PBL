@@ -123,7 +123,8 @@ void SystemManager::bookingProcess() {
                 cin >> confirm;
                 ErrorHandler::clearInputBuffer();
                 if (toupper(confirm) == 'Y') {
-                    ticketManager.exportTicket(code.c_str(), name, phone, flight.getFlightCode(), flight.getDeparture(), flight.getDestination(), flight.getFlightTime(), seatInput, seatClass);
+                    ticketManager.exportTicket(code.c_str(), name, phone, flight.getFlightCode(), flight.getDeparture(), 
+                                                flight.getDestination(), flight.getFlightTime(), seatInput, seatClass);
                 }
                 break;
             } else {

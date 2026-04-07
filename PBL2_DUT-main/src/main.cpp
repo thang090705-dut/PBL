@@ -8,7 +8,6 @@
 #include <thread>
 #include <chrono>
 #include <exception>
-#include "ErrorHandler.hpp"
 
 using namespace std;
 

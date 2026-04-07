@@ -1,9 +1,9 @@
 #include "SeatManager.hpp"
+#include "Path.hpp"
 #include <iostream>
 #include <cstring>
 #include <fstream>
 #include <string>
-#include "Path.hpp"
 
 using namespace std;
 

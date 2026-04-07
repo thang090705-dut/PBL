@@ -11,5 +11,6 @@
 #include "TicketManager.hpp"
 #include "FileManager.hpp"
 #include "SystemManager.hpp"
+#include "ErrorHandler.hpp"
 
 #endif

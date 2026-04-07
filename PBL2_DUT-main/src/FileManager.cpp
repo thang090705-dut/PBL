@@ -1,7 +1,7 @@
 #include "FileManager.hpp"
+#include "Path.hpp"
 #include <iostream>
 #include <fstream>
-#include "Path.hpp"
 using namespace std;
 
 bool FileManager::loadTicketsData(const std::string& path, TicketManager &tm) {

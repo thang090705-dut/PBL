@@ -2,6 +2,8 @@
 #include "Path.hpp"
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <cctype>
 using namespace std;
 
 bool FileManager::loadTicketsData(const std::string& path, TicketManager &tm) {
@@ -53,8 +55,14 @@ bool FileManager::loadSeatMap(const std::string& path, SeatManager &sm, TicketMa
     fin >> total;
     sm.settotalSeats(total);
     for (int i = 0; i < total; i++){
-        int no, status;
-        fin >> no;
+        string seatStr;
+        int status;
+        fin >> seatStr;
+        
+        int row = stoi(seatStr.substr(0, seatStr.length() - 1));
+        char colChar = toupper(seatStr.back());
+        int no = (row - 1) * 6 + (colChar - 'A') + 1;
+        
         fin >> status;
         if (status == 1) {
             char code[10];
@@ -77,7 +85,12 @@ bool FileManager::saveSeatMap(const std::string& path, const SeatManager &sm){
     int total = sm.gettotalSeats();
     fout << total << endl;
     for(int i = 0; i < total; i++){
-        fout << sm.getseatNo(i) << " " << sm.getseatStatus(i);
+        int no = sm.getseatNo(i);
+        int row = (no - 1) / 6 + 1;
+        char col = 'A' + ((no - 1) % 6);
+        string seatStr = (row < 10 ? "0" : "") + to_string(row) + col;
+        
+        fout << seatStr << " " << sm.getseatStatus(i);
         if (sm.getseatStatus(i) == 1) {
             fout << " " << sm.getSeatCode(i);
         }

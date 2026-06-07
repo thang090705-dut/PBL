@@ -65,7 +65,7 @@ void TicketManager::exportTicket(const char* code, const std::string& name, cons
         
         out << ticketContent;
         out.close();
-        std::cout << "--- Đã xuất file vé: " << filename << " ---" << std::endl;
+        std::cout << "  --- Đã xuất file vé: " << filename << " ---" << std::endl;
     }
     else {
         std::cout << "Lỗi: Không thể lưu vé! \n";

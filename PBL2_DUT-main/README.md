@@ -1,44 +1,56 @@
-# PBL2_DUT - Hệ thống quản lý đặt chỗ ngồi trên máy bay
+# ✈️ ITF Airway - Airline Seat Booking Management System (PBL2 - DUT)
 
 ## 📖 Giới thiệu
-Đây là Đồ án môn học PBL 2 - Dự án cơ sở lập trình.
-Mô phỏng hệ thống quản lý và đặt chỗ ngồi máy bay cơ bản.
-Dự án là một ứng dụng Console viết bằng ngôn ngữ **C++**.
+Dự án **PBL2 - Dự án cơ sở lập trình** là ứng dụng Console quản lý đặt chỗ ngồi trên máy bay, được viết bằng ngôn ngữ **C++**. Hệ thống cho phép quản lý thông tin chuyến bay, sơ đồ ghế, thông tin hành khách và hỗ trợ xuất vé điện tử dưới dạng tệp văn bản.
 
-## Tính năng chính
-- **Đăng nhập hệ thống:** Bảo mật cơ bản cho người quản lý.
-- **Chọn & Đặt ghế ngồi:** Giao diện đặt ghế mô phỏng theo thực tế chuyến bay.
-- **Kiểm tra sơ đồ ghế:** Hiển thị trực quan các ghế còn trống / đã đặt.
+## ✨ Các tính năng chính
+- 🔐 **Hệ thống đăng nhập:** Bảo mật quyền truy cập cho quản trị viên (có ẩn mật khẩu).
+- 💺 **Quản lý sơ đồ ghế:** Hiển thị trực quan sơ đồ ghế máy bay (60 ghế). Phân loại hạng ghế (Business/Economy).
+- 🎟️ **Đặt chỗ & Xuất vé:** 
+    - Kiểm tra mã vé hợp lệ từ danh sách có sẵn.
+    - Cho phép hành khách chọn vị trí ghế trống.
+    - Tự động xuất file vé riêng lẻ (.txt) cho từng hành khách.
+- 🔍 **Tra cứu & Quản lý:** 
+    - Tìm kiếm thông tin hành khách theo mã vé.
+    - Xuất tổng hợp danh sách tất cả các vé đã đặt chỗ ra file `.txt`.
+- ❌ **Hủy vé:** Hỗ trợ hủy từng vé đơn lẻ hoặc giải phóng toàn bộ sơ đồ ghế khi cần thiết.
+- 💾 **Lưu trữ dữ liệu:** Tự động đồng bộ trạng thái ghế vào tệp tin sau mỗi phiên làm việc.
 
-## 🛠 Công nghệ sử dụng (Tech Stack)
-- **Ngôn ngữ:** C++ (Standard C++11 trở lên).
-- **Thư viện:** Standard Template Library (STL), `iostream`, `fstream`, `chrono`, `thread`.
+## 🛠 Công nghệ sử dụng
+- **Ngôn ngữ:** C++ (Standard C++11 hoặc cao hơn).
+- **Thư viện:** STL , `iostream`, `fstream`, `chrono`, `thread`.
 - **Hệ điều hành hỗ trợ:** Windows (tối ưu hóa hiển thị UTF-8 và phím bấm), Linux/macOS.
 - **Công cụ biên dịch:** `g++` hoặc `MinGW`.
 
-## 📂 Cấu trúc thư mục
-```text
+## 📂 Cấu trúc thư mục chi tiết
+```bash
 PBL2_DUT-main/
-├── data/                   # Chứa các tệp dữ liệu đầu vào (.txt)
-│   ├── seats.txt           # Trạng thái sơ đồ ghế
-│   ├── users.txt           # Thông tin tài khoản quản lý
-│   ├── tickets_list.txt    # Danh sách vé cơ sở
-│   └── seat_template.txt   # Mẫu hiển thị sơ đồ ghế trực quan
-├── export/                 # Dữ liệu đầu ra của hệ thống
-│   ├── tickets/            # Thư mục chứa các file vé lẻ cho khách hàng
-│   └── booked_tickets.txt  # Tổng hợp danh sách đã chọn chỗ
-├── include/                # Các tệp tiêu đề (.hpp)
-│   ├── Constants.hpp       # Các hằng số định nghĩa hệ thống
-│   ├── ErrorHandler.hpp    # Xử lý lỗi nhập liệu và ngoại lệ
-│   ├── FileManager.hpp     # Giao tiếp đọc/ghi tệp tin
-│   ├── Flight.hpp          # Thông tin chuyến bay
-│   ├── Path.hpp            # Quản lý đường dẫn tệp tin
-│   ├── SystemManager.hpp   # Điều phối toàn bộ quy trình logic
-│   └── ...                 # Các lớp thực thể khác (Seat, Ticket, Login)
-├── src/                    # Mã nguồn triển khai (.cpp)
-│   ├── main.cpp            # Điểm bắt đầu của ứng dụng
-│   ├── SystemManager.cpp   # Logic xử lý nghiệp vụ chính
-│   └── ...                 # Triển khai các lớp tương ứng
+├── data/                   # Dữ liệu đầu vào
+│   ├── seats.txt           # Lưu trạng thái ghế hiện tại (Mã ghế - 1: Đã đặt, 0: Trống)
+│   ├── users.txt           # Danh sách tài khoản admin
+│   ├── tickets_list.txt    # Danh sách mã vé và thông tin khách hàng cơ sở
+│   └── seat_template.txt   # Giao diện sơ đồ ghế dạng ASCII
+├── export/                 # Dữ liệu đầu ra
+│   ├── tickets/            # Thư mục chứa các file vé lẻ (.txt) khi xuất vé
+│   └── booked_tickets.txt  # File tổng hợp danh sách hành khách đã có chỗ
+├── include/                # File tiêu đề (.hpp)
+│   ├── Constants.hpp       # Định nghĩa các hằng số (MAX_SEATS,...)
+│   ├── ErrorHandler.hpp    # Xử lý ngoại lệ và làm sạch bộ đệm cin
+│   ├── FileManager.hpp     # Lớp chuyên trách đọc/ghi tệp tin
+│   ├── Flight.hpp          # Quản lý thông tin chuyến bay (Số hiệu, hành trình)
+│   ├── ITF_airway.hpp      # Interface/Header tổng hợp các thư viện
+│   ├── Login.hpp           # Xử lý xác thực người dùng
+│   ├── Path.hpp            # Quản lý tập trung các đường dẫn file
+│   ├── SeatManager.hpp     # Logic quản lý sơ đồ và trạng thái ghế
+│   ├── SystemManager.hpp   # Lớp điều phối (Controller) toàn bộ ứng dụng
+│   └── TicketManager.hpp   # Quản lý danh sách vé và thông tin hành khách
+├── src/                    # Triển khai mã nguồn (.cpp)
+│   ├── FileManager.cpp     
+│   ├── Login.cpp           
+│   ├── main.cpp            
+│   ├── SeatManager.cpp     
+│   ├── SystemManager.cpp   
+│   └── TicketManager.cpp   
 └── README.md
 ```
 
@@ -66,6 +78,6 @@ PBL2_DUT-main/
 
 ## Thành viên nhóm thực hiện
 - **[Nguyễn Hữu Thắng]** - [MSSV : 123230128]
-- **[Huỳnh Tuấn Khoa]** - [MSSV : ]
+- **[Huỳnh Tuấn Khoa]** - [MSSV : 12323]
 - **[Trần Dương Hùng]** - [MSSV : ]
 - **Giảng viên hướng dẫn:** [Ths. Trần Hồ Thủy Tiên]

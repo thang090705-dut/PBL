@@ -12,7 +12,7 @@
 using namespace std;
 
 void SystemManager::openFlight(){
-    flight.inputFlight();
+    flight.getFlightInfo();
     ticketManager.reset();
     if (!fileManager.loadTicketsData(PATH_TICKETS, ticketManager)) {
         cout << "=> Không thể tải danh sách 60 vé!" << endl;

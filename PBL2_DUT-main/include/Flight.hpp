@@ -12,7 +12,7 @@ private:
     std::string FlightTime;
     
 public:
-    void inputFlight();
+    void getFlightInfo();
     void displayFlightInfo() const;
     std::string getFlightCode() const;
     std::string getDeparture() const;

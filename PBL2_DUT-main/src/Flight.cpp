@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void Flight::inputFlight(){
+void Flight::getFlightInfo(){
     FlightCode = "PFIEV";
     Departure = "Da Nang";
     Destination = "Ho Chi Minh City";

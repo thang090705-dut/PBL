@@ -78,6 +78,6 @@ PBL2_DUT-main/
 
 ## Thành viên nhóm thực hiện
 - **[Nguyễn Hữu Thắng]** - [MSSV : 123230128]
-- **[Huỳnh Tuấn Khoa]** - [MSSV : 12323]
-- **[Trần Dương Hùng]** - [MSSV : ]
+- **[Huỳnh Tuấn Khoa]** - [MSSV : 123230114]
+- **[Trần Dương Hùng]** - [MSSV : 123230108]
 - **Giảng viên hướng dẫn:** [Ths. Trần Hồ Thủy Tiên]

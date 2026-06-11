@@ -3,14 +3,31 @@
 #include <iostream>
 #include <fstream>
 #include <conio.h>
+#include <windows.h>
 using namespace std;
 
+void clearScreen() {
+    system("cls");
+}
 
 void Login::input() {
-    cout << "\n\n          --- HỆ THỐNG ĐĂNG NHẬP ---\n\n";
-    cout << "          Tên đăng nhập: ";
+    clearScreen();
+    
+    // Hiển thị khung đẹp - căn giữa
+    cout << "\n\n";
+    cout << "                        ╔════════════════════════════════════════╗\n";
+    cout << "                        ║                                        ║\n";
+    cout << "                        ║      *** HỆ THỐNG ĐĂNG NHẬP ***        ║\n";
+    cout << "                        ║                                        ║\n";
+    cout << "                        ╠════════════════════════════════════════╣\n";
+    cout << "                        ║                                        ║\n";
+    cout << "                        ║  Tên đăng nhập: ";
+    
     getline(cin, Username);
-    cout << "          Mật khẩu     : ";
+    
+    cout << "                        ║                                        ║\n";
+    cout << "                        ║  Mật khẩu: ";
+    
     Password = "";
     char ch;
     
@@ -29,7 +46,10 @@ void Login::input() {
             cout << '*'; 
         }
     }
+    
     cout << "\n";
+    cout << "                        ║                                        ║\n";
+    cout << "                        ╚════════════════════════════════════════╝\n";
 }
 string Login::getUsername() const{ return Username; }
 string Login::getPassword() const{ return Password; }
@@ -56,13 +76,29 @@ bool Login::performLogin() {
     while (!check()) {
         ++i;
         if (i == 3) {
-            cout << "\n          [!] Khóa đăng nhập. Bạn đã nhập sai quá 3 lần!\n";
+            cout << "\n";
+            cout << "                        ╔════════════════════════════════════════╗\n";
+            cout << "                        ║                                        ║\n";
+            cout << "                        ║     [✗] KHÓA ĐĂNG NHẬP                 ║\n";
+            cout << "                        ║  Bạn đã nhập sai quá 3 lần!            ║\n";
+            cout << "                        ║                                        ║\n";
+            cout << "                        ╚════════════════════════════════════════╝\n";
+            cout << "\n";
             return false;
         }
-        cout << "\n          [!] Đăng nhập thất bại! Vui lòng nhập lại\n";
-        cout << "          [*] Bạn còn " << 3 - i << " lần thử.\n";
+        cout << "                        ╔════════════════════════════════════════╗\n";
+        cout << "                        ║                                        ║\n";
+        cout << "                        ║  [!] Đăng nhập thất bại!               ║\n";
+        cout << "                        ║      Vui lòng nhập lại                 ║\n";
+        cout << "                        ║  [*] Bạn còn " << 3 - i << " lần thử                   ║\n";
+        cout << "                        ║                                        ║\n";
+        cout << "                        ╚════════════════════════════════════════╝\n\n";
         input();
     }
-    cout << "\n          [+] Đăng nhập thành công!\n";
+    cout << "                        ╔════════════════════════════════════════╗\n";
+    cout << "                        ║                                        ║\n";
+    cout << "                        ║    [✓] ĐĂNG NHẬP THÀNH CÔNG!           ║\n";
+    cout << "                        ║                                        ║\n";
+    cout << "                        ╚════════════════════════════════════════╝\n\n";
     return true;
 }

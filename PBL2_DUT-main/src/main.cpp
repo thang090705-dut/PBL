@@ -2,12 +2,16 @@
 #ifdef _WIN32
 #include <windows.h>
 #endif
-#include <limits>
-#include <ctime>
-#include <cstdlib>
-#include <thread>
-#include <chrono>
-#include <exception>
+#include <string>          // Xử lý chuỗi ký tự
+#include <fstream>         // Xử lý file (ifstream, ofstream)
+#include <limits>          // Giới hạn số lượng (numeric_limits)
+#include <ctime>           // Hàm xử lý thời gian
+#include <cstdlib>         // Thư viện chuẩn C (system, rand, etc)
+#include <thread>          // Xử lý luồng (threading)
+#include <chrono>          // Công cụ thời gian (sleep_for, duration)
+#include <exception>       // Xử lý ngoại lệ
+#include <conio.h>         // Console I/O Windows (getch, kbhit)
+#include <windows.h>       // Windows API (SetConsoleOutputCP - hỗ trợ Unicode)
 
 using namespace std;
 

@@ -65,13 +65,11 @@ PBL2_DUT-main/
    - **Tra cứu:** Hiển thị sơ đồ ghế trực quan (XX là ghế đã đặt) và thông tin hành khách.
    - **Hủy vé:** Giải phóng ghế đã chọn và cập nhật lại tệp dữ liệu.
 4. **Kết thúc:** 
+   - Lưu mã ghế vào `data/tickets_list.txt` ứng với hành khách đã đặt
    - Lưu toàn bộ trạng thái sơ đồ ghế mới nhất vào `data/seats.txt` trước khi đóng chương trình.
 
 ## Hướng dẫn cài đặt và chạy
-1. Clone repository này về máy tính của bạn:
-   ```bash
-   git clone <https://github.com/thang090705-dut/PBL>
-   ```
+1. Download toàn bộ dự án về máy của bạn.
 2. Mở thư mục dự án bằng IDE của bạn.
 3. Đảm bảo bạn đã cài đặt trình biên dịch C++ (ví dụ: `g++` hoặc `MinGW`).
 4. Biên dịch và chạy file `main.cpp` trong thư mục `src`.
